@@ -23,7 +23,7 @@
                 @foreach($mailboxes as $key => $mailbox)
                     <tr>
                         <td>COLOR</td>
-                        <td>{{ $mailbox->username . '@' . $mailbox->domain }}</td>
+                        <td>{{ $mailbox->username }}</td>
                         <td>Mailbox</td>
                         <td>{{ $mailbox->name != '' ? $mailbox->name : '(not set)' }}</td>
                         <td>{{ $mailbox->active ? 'Yes' : 'No' }}</td>
