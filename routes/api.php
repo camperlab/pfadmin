@@ -15,13 +15,9 @@ use App\Http\Controllers\Api\MailboxesController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-
-Route::prefix('v1')->group(function() {
+Route::group(['middleware' => 'token', 'prefix' => 'v1'], function() {
     Route::prefix('mailboxes')->group(function() {
         Route::get('', [MailboxesController::class, 'index'])->name('mailboxes.index');
     });
 });
+

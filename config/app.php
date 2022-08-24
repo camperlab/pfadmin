@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+
+    'token' => env('APP_TOKEN'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

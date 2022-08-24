@@ -23,7 +23,10 @@
                             <tr>
                                 <td>{{ substr($admin->username, 0, 20) }}</td>
                                 <td>{{ $admin->superadmin === 1 ? 'SuperAdmin' : $admin->domains->count() }}</td>
-                                <td><a href="{{ route('admins.toggle-active', ['username' => $admin->username]) }}" class="btn btn-sm {{ $admin->active ? 'btn-primary' : 'btn-secondary' }}">{{ $admin->active ? 'Yes' : 'No' }}</a></td>
+                                <td><a
+                                        href="{{ route('admins.toggle-active', ['username' => $admin->username]) }}"
+                                        class="btn btn-sm {{ $admin->active ? 'btn-primary' : 'btn-secondary' }}"
+                                    >{{ $admin->active ? 'Yes' : 'No' }}</a></td>
                                 <td>{{ Carbon::parse($admin->modified)->toDateString() }}</td>
                                 <td>
                                     <a href="{{ route('admins.edit', ['username' => $admin->username]) }}"
