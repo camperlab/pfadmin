@@ -32,6 +32,10 @@ class Mailbox extends Model
 
     public $incrementing = false;
 
+    protected $fillable = [
+        'password'
+    ];
+
     public static function boot()
     {
         parent::boot();

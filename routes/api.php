@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\MailboxesController;
+use App\Http\Controllers\Api\{
+    MailboxesController,
+    DomainsController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +19,17 @@ use App\Http\Controllers\Api\MailboxesController;
 */
 
 Route::group(['middleware' => 'token', 'prefix' => 'v1'], function() {
+
     Route::prefix('mailboxes')->group(function() {
-        Route::get('', [MailboxesController::class, 'index'])->name('mailboxes.index');
+        Route::get('', [MailboxesController::class, 'index']);
+        Route::get('show', [MailboxesController::class, 'show']);
+        Route::post('', [MailboxesController::class, 'store']);
+        Route::post('update', [MailboxesController::class, 'update']);
+        Route::delete('delete', [MailboxesController::class, 'destroy']);
+    });
+
+    Route::prefix('domains')->group(function() {
+        Route::get('', [DomainsController::class, 'index'])->name('domains.index');
     });
 });
 

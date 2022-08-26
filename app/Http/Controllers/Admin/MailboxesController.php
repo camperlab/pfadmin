@@ -46,23 +46,6 @@ class MailboxesController extends Controller
             'other_email' => 'nullable|string'
         ]);
 
-        $mailbox = new Mailbox();
-        $mailbox->username = $request->get('username');
-        $mailbox->local_part = $request->get('username');
-        $mailbox->domain = $request->get('domain');
-        $mailbox->name = $request->get('name') ?? '';
-        $mailbox->maildir = "{$request->get('domain')}/{$request->get('username')}/";
-        $mailbox->password = Hash::make($request->get('password'));
-        $mailbox->quota = $request->get('quota') ?? 0;
-        $mailbox->active = $request->has('active');
-        $mailbox->email_other = $request->get('email_other') ?? '';
-
-        if ($request->get('send_welcome')) {
-            // TODO SEND WELCOME MAIL
-        }
-
-        $mailbox->save();
-
         return redirect('virtual')->with('status', 'Form Data Has Been Inserted');
     }
 
