@@ -28,7 +28,7 @@ class MakeAdmin extends Command
     public function handle(): int
     {
 
-        if (Admin::exists()) {
+        if (!Admin::exists()) {
             $password = $this->argument('password');
             $domain = $this->argument('domain');
 
