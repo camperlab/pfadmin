@@ -14,6 +14,8 @@ use Illuminate\Notifications\Notifiable;
  * @property int|mixed $superadmin
  * @property int|mixed $active
  * @method static where(string $string, mixed $get)
+ * @method static create(array $array)
+ * @method static exists()
  */
 class Admin extends Authenticatable
 {
@@ -35,6 +37,8 @@ class Admin extends Authenticatable
      */
     protected $fillable = [
         'username',
+        'password',
+        'superadmin',
         'active'
     ];
 
