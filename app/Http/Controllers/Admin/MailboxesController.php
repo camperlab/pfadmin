@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Domain;
 use App\Models\Mailbox;
+use App\Repositories\MailboxRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -16,6 +17,14 @@ use Illuminate\Validation\ValidationException;
 
 class MailboxesController extends Controller
 {
+
+    private MailboxRepository $mailboxRepository;
+
+    public function __construct(MailboxRepository $mailboxRepository)
+    {
+        $this->mailboxRepository = $mailboxRepository;
+    }
+
     /**
      * @return Application|Factory|View
      */
@@ -44,6 +53,15 @@ class MailboxesController extends Controller
             'active' => 'nullable',
             'send_welcome' => 'nullable',
             'other_email' => 'nullable|string'
+        ]);
+
+        $this->mailboxRepository->create([
+            'username' => $request->get('username'),
+            'domain' => $request->get('domain'),
+            'password' => $request->get('password'),
+            'name' => $request->get('name'),
+            'active' => $request->get('active') === 'on' ?? false,
+            'send_welcome' => $request->get('send_welcome') ?? null
         ]);
 
         return redirect('virtual')->with('status', 'Form Data Has Been Inserted');
